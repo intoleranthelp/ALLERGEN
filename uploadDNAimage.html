@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload DNA Image - ALLERGEN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Sticky Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="\images\dna3.png" alt="Allergen Logo"></a>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="allergy.html">Allergy</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About</a>
+        </nav>
+        <div class="auth-buttons">
+            <button class="auth-button" onclick="window.location.href='signup.html'">Sign Up</button>
+            <button class="auth-button" onclick="window.location.href='login.html'">Log In</button>
+        </div>
+    </header>
+
+    <!-- Upload Hero Section -->
+    <section class="upload-hero">
+        <div class="hero-content">
+            <h2>Upload Your DNA Image</h2>
+            <p>Get instant insights into potential allergies by uploading your DNA image. Our AI will analyze it and provide detailed results.</p>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-container">
+        <div class="upload-content">
+            <!-- Upload Box -->
+            <div class="upload-box" id="dropArea">
+                <div class="upload-icon">
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                </div>
+                <p>Drag and drop your file here</p>
+                <p>or</p>
+                <input type="file" id="fileInput" accept="image/*, .pdf" hidden>
+                <button class="browse-btn" id="browseBtn">Browse Files</button>
+                <p id="fileName"></p>
+            </div>
+
+            <!-- Preview and Actions -->
+            <div class="preview-section">
+                <img id="previewImage" alt="Preview" class="preview" style="display: none;" />
+                <div class="action-buttons">
+                    <button class="cancel-btn" onclick="cancelUpload()" id="cancelBtn" disabled>Cancel</button>
+                    <button class="scan-btn" onclick="scanImage()" id="scanBtn" disabled>Scan</button>
+                </div>
+                <p id="statusMessage" class="status-message"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="cta">
+        <h2>Not Sure How to Get Started?</h2>
+        <p>Check out our <a href="about.html">About</a> page to learn more about how Allergen works.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Allergen. All rights reserved.</p>
+        <div class="social-media">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Function to preview uploaded image
+        function previewFile() {
+            let file = document.getElementById("fileInput").files[0];
+            let reader = new FileReader();
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+
+            reader.onloadend = function () {
+                let img = document.getElementById("previewImage");
+                img.src = reader.result;
+                img.style.display = "block";
+                document.getElementById("statusMessage").innerText = "Image uploaded. Ready to scan.";
+
+                // Enable the Scan and Cancel buttons
+                document.getElementById("scanBtn").disabled = false;
+                document.getElementById("cancelBtn").disabled = false;
+            };
+        }
+
+        // Function to cancel upload
+        function cancelUpload() {
+            document.getElementById("fileInput").value = "";
+            document.getElementById("previewImage").style.display = "none";
+            document.getElementById("fileName").innerText = "";
+            document.getElementById("statusMessage").innerText = "Upload canceled.";
+            document.getElementById("scanBtn").disabled = true;
+            document.getElementById("cancelBtn").disabled = true;
+        }
+
+        // Function to scan the image and send it to the server
+        function scanImage() {
+            console.log("🚀 scanImage() function started!");
+
+            let fileInput = document.getElementById("fileInput");
+            let file = fileInput.files[0];
+
+            if (!file) {
+                alert("❌ No file selected!");
+                console.log("❌ No file selected!");
+                return;
+            }
+
+            console.log("📌 Selected file:", file.name);
+
+            let formData = new FormData();
+            formData.append("file", file);
+
+            fetch("http://127.0.0.1:5000/upload", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("🔹 Server Response:", data);
+
+                if (!data || data.error) {
+                    alert("❌ Error: " + (data.error || "No prediction received."));
+                    return;
+                }
+
+                if (!data.final_prediction) {
+                    alert("❌ No predictions received.");
+                    return;
+                }
+
+                // Save the prediction data to localStorage
+                localStorage.setItem("scanResult", JSON.stringify(data));
+                console.log("📌 Saved to localStorage:", localStorage.getItem("scanResult"));
+
+                alert("✅ Scan complete!");
+                window.location.href = "results.html";
+            })
+            .catch(error => {
+                console.error("❌ Fetch Error:", error);
+                alert("❌ Error uploading file. Check the console for details.");
+            });
+        }
+
+        // Drag and drop functionality
+        const dropArea = document.getElementById("dropArea");
+
+        dropArea.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            dropArea.classList.add("dragover");
+        });
+
+        dropArea.addEventListener("dragleave", () => {
+            dropArea.classList.remove("dragover");
+        });
+
+        dropArea.addEventListener("drop", (e) => {
+            e.preventDefault();
+            dropArea.classList.remove("dragover");
+            const file = e.dataTransfer.files[0];
+
+            const allowedTypes = ["image/png", "image/jpeg", "image/jpg", "image/gif", "application/pdf"];
+            if (!allowedTypes.includes(file.type)) {
+                alert("Only image files (PNG, JPG, JPEG, GIF) and PDF files are allowed.");
+                cancelUpload();
+                return;
+            }
+
+            document.getElementById("fileInput").files = e.dataTransfer.files;
+            previewFile();
+        });
+
+        document.getElementById("browseBtn").addEventListener("click", () => {
+            document.getElementById("fileInput").click();
+        });
+
+        document.getElementById("fileInput").addEventListener("change", () => {
+            const file = document.getElementById("fileInput").files[0];
+            if (file) {
+                document.getElementById("fileName").innerText = `Selected file: ${file.name}`;
+                previewFile();
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,1038 @@
+/* General Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f9f9f9; /* Light background */
+    color: #333; /* Dark text for contrast */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.feature-icon {
+    font-size: 40px; /* Adjust the size as needed */
+    color: #00796b; /* Optional: Change the color to match your design */
+    margin-bottom: 20px; /* Optional: Add spacing below the icon */
+}
+
+/* Logo Styling */
+.logo img {
+    height: 50px; /* Adjust the height as needed */
+    width: auto; /* Maintain aspect ratio */
+    margin: 0; /* Remove any default margin */
+}
+
+/* Adjust the navbar to accommodate the logo */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #132846;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+.logo{
+    margin-right: auto;
+}
+.navbar .logo h1 {
+    display: none; /* Hide the text if it's still there */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo img {
+        height: 40px; /* Smaller logo for mobile devices */
+    }
+}
+.nav-links{
+    display: flex;
+    gap: 20px;
+    position: absolute; /* Position the nav links absolutely within the navbar */
+    left: 50%; /* Move the nav links to the center */
+    transform: translateX(-50%);
+}
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #00bfa5; /* Light teal on hover */
+}
+
+.auth-buttons {
+    display: none;
+    gap: 10px;
+}
+
+.auth-button {
+    background-color: #00bfa5; /* Light teal */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #00897b; /* Darker teal on hover */
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('/images/dna1.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center; /* Centers the image */
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative; /* Needed for overlay */
+}
+
+/* Optional: Add an overlay to improve text readability */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative; /* Ensures content is above the overlay */
+    z-index: 2;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: #ff6f61; /* Soft pink */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #ff3b2f; /* Darker pink on hover */
+}
+
+/* Features Section */
+.features {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #00796b; /* Dark teal */
+}
+
+.feature-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.feature {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 40px);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.feature img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    color: #00796b; /* Dark teal */
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.feature p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #00796b; /* Dark teal */
+}
+
+.testimonial {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+    font-style: italic;
+    color: #555;
+}
+
+/* Call-to-Action Section */
+.cta {
+    background: #00796b; /* Dark teal */
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* Allergy Hero Section */
+.allergy-hero {
+    background-image: url('/images/allergen.jpg'); /* Ensure the path is correct */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.allergy-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.allergy-hero .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.allergy-hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.allergy-hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Allergy Types Section */
+.allergy-subpage {
+    padding: 60px 20px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.allergy-subpage h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #00796b;
+}
+
+.allergy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.allergy-type {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.allergy-type:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.allergy-type img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.allergy-type h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #00796b;
+}
+
+.allergy-type p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Call-to-Action Section */
+.cta {
+    background: #00796b; /* Dark teal */
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background-color: #ff6f61; /* Soft pink */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #ff3b2f; /* Darker pink on hover */
+}
+
+/* Footer */
+.footer {
+    background: #00796b; /* Dark teal */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer .social-media {
+    margin-top: 10px;
+}
+
+.footer .social-media a {
+    color: white;
+    margin: 0 10px;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer .social-media a:hover {
+    color: #00bfa5; /* Light teal on hover */
+}
+
+/* Contact Section */
+.contact-container {
+    padding: 60px 20px;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+.contact-container h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #00796b;
+}
+
+.contact-container p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.contact-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+}
+
+.contact-form {
+    flex: 1;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.contact-info h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #00796b;
+}
+
+.contact-info p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.social-media h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #00796b;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #00796b;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #00bfa5;
+}
+
+.map {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+}
+
+.map h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #00796b;
+}
+
+.map iframe {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #00796b;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px; /* Reduced padding */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px; /* Reduced font size */
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.cta-button {
+    background-color: #ff6f61; /* Soft pink */
+    color: white;
+    padding: 12px 25px; /* Adjusted padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Adjusted font size */
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #ff3b2f; /* Darker pink on hover */
+}
+
+/* About Hero Section */
+.about-hero {
+    background-image: url('/images/about2.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text readability */
+    z-index: 1;
+}
+
+.about-hero .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.about-hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.about-hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* About Content Section */
+.about-container {
+    padding: 60px 20px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.about-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 40px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.about-card img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.about-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #00796b;
+}
+
+.about-card p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.about-card ul {
+    text-align: left;
+    list-style-type: disc;
+    padding-left: 20px;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* FAQ Section */
+.faq {
+    padding: 60px 20px;
+    background: white;
+    text-align: center;
+}
+
+.faq h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #00796b;
+}
+
+.faq-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faq-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 40px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.faq-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #00796b;
+}
+
+.faq-card p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Upload Section */
+.upload-container {
+    padding: 60px 20px;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+.upload-container h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #00796b;
+}
+
+.upload-box {
+    background: white;
+    padding: 40px;
+    border: 2px dashed #00796b;
+    border-radius: 10px;
+    text-align: center;
+    transition: border-color 0.3s ease;
+}
+
+.upload-box.dragover {
+    border-color: #00bfa5;
+}
+
+.upload-icon {
+    font-size: 40px;
+    color: #00796b;
+    margin-bottom: 20px;
+}
+
+.upload-box p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.browse-btn {
+    background-color: #ff6f61;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.browse-btn:hover {
+    background-color: #ff3b2f;
+}
+
+.preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.cancel-btn, .scan-btn {
+    background-color: #00796b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover, .scan-btn:hover {
+    background-color: #00bfa5;
+}
+
+.status-message {
+    font-size: 16px;
+    color: #555;
+    margin-top: 20px;
+}
+
+/* Upload Hero Section */
+.upload-hero {
+    background-image: url('/images/dna2.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.upload-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text readability */
+    z-index: 1;
+}
+
+.upload-hero .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.upload-hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.upload-hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Upload Section */
+.upload-container {
+    padding: 60px 20px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.upload-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.upload-box {
+    flex: 1;
+    background: white;
+    padding: 40px;
+    border: 2px dashed #00796b;
+    border-radius: 10px;
+    text-align: center;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.upload-box.dragover {
+    border-color: #00bfa5;
+}
+
+.upload-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.upload-icon {
+    font-size: 40px;
+    color: #00796b;
+    margin-bottom: 20px;
+}
+
+.upload-box p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.browse-btn {
+    background-color: #ff6f61;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.browse-btn:hover {
+    background-color: #ff3b2f;
+}
+
+.preview-section {
+    flex: 1;
+    text-align: center;
+}
+
+.preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.action-buttons {
+    margin-top: 20px;
+}
+
+.cancel-btn, .scan-btn {
+    background-color: #00796b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover, .scan-btn:hover {
+    background-color: #00bfa5;
+}
+
+.status-message {
+    font-size: 16px;
+    color: #555;
+    margin-top: 20px;
+}
+
+/* Results Section */
+.results-container {
+    padding: 60px 20px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.results-container h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #00796b;
+}
+
+.results-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.results-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.results-card h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #00796b;
+}
+
+.allergy-result {
+    margin-bottom: 20px;
+}
+
+.allergy-result p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #00796b;
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+.allergy-result span {
+    font-size: 16px;
+    color: #00796b;
+    margin-left: 10px;
+}
+
+/* Auth Container Styling */
+.auth-container {
+    max-width: 400px; /* Adjust the width as needed */
+    margin: 50px auto; /* Centers the container horizontally */
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centers the text inside the container */
+}
+
+/* Form Group Styling */
+.auth-container .form-group {
+    margin-bottom: 20px;
+    text-align: left; /* Aligns labels and inputs to the left */
+    width: 100%; /* Ensures the form group takes full width */
+}
+
+.auth-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #00796b;
+}
+
+.auth-container .form-group input {
+    width: 100%; /* Ensures input fields take full width */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.auth-container .auth-submit-button {
+    width: 100%; /* Makes the button full width */
+    padding: 12px;
+    background-color: #ff6f61; /* Soft pink */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.auth-container .auth-submit-button:hover {
+    background-color: #ff3b2f; /* Darker pink on hover */
+}
+
+.auth-container p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.auth-container p a {
+    color: #00796b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-container p a:hover {
+    text-decoration: underline;
+}
+/* Download Section */
+.download-section {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    align-items: center; /* Center the button vertically */
+    padding: 20px 0; /* Add some padding for spacing */
+}
+
+/* Download Button Styling */
+.download-btn {
+    background-color: #00796b; /* Dark teal */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.download-btn:hover {
+    background-color: #00bfa5; /* Light teal on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.download-btn:active {
+    transform: translateY(0); /* Reset lift when clicked */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Reset shadow when clicked */
+}

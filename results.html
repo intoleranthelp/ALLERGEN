@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results - ALLERGEN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <h1>ALLERGEN</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="allergy.html">Allergy</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About</a>
+        </nav>
+        <div class="auth-buttons">
+            <button class="auth-button" onclick="window.location.href='signup.html'">Sign Up</button>
+            <button class="auth-button" onclick="window.location.href='login.html'">Log In</button>
+        </div>
+    </header>
+
+    <section class="results-container">
+        <h2>Scan Results</h2>
+        <div class="results-content">
+            <div class="results-card">
+                <h3>Allergy Profile</h3>
+                <div class="allergy-result">
+                    <p>No Allergy</p>
+                    <div class="progress-bar">
+                        <div id="no-allergy-bar" class="progress" style="width: 0%;"></div>
+                    </div>
+                    <span id="no-allergy-percentage">0%</span>
+                </div>
+                <div class="allergy-result">
+                    <p>Peanut Allergy</p>
+                    <div class="progress-bar">
+                        <div id="peanut-bar" class="progress" style="width: 0%;"></div>
+                    </div>
+                    <span id="peanut-percentage">0%</span>
+                </div>
+                <div class="allergy-result">
+                    <p>Lactose Intolerance</p>
+                    <div class="progress-bar">
+                        <div id="lactose-bar" class="progress" style="width: 0%;"></div>
+                    </div>
+                    <span id="lactose-percentage">0%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Allergen. All rights reserved.</p>
+        <div class="social-media">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Retrieve scan result from localStorage
+        document.addEventListener("DOMContentLoaded", function () {
+            let scanData = localStorage.getItem("scanResult");
+            console.log("📌 Retrieved scan data:", scanData);
+
+            if (scanData) {
+                let result = JSON.parse(scanData);
+                console.log("✅ Parsed result:", result);
+
+                // Convert "100.00%" to just numbers (e.g., "100.00%" → 100)
+                function extractPercentage(value) {
+                    return parseFloat(value.replace("%", "")) || 0;
+                }
+
+                let noAllergy = extractPercentage(result["No Allergy"]);
+                let peanutAllergy = extractPercentage(result["Peanut Allergy"]);
+                let lactoseIntolerance = extractPercentage(result["Lactose Intolerance"]);
+
+                // Update progress bars
+                document.getElementById("no-allergy-bar").style.width = noAllergy + "%";
+                document.getElementById("no-allergy-percentage").innerText = noAllergy + "%";
+
+                document.getElementById("peanut-bar").style.width = peanutAllergy + "%";
+                document.getElementById("peanut-percentage").innerText = peanutAllergy + "%";
+
+                document.getElementById("lactose-bar").style.width = lactoseIntolerance + "%";
+                document.getElementById("lactose-percentage").innerText = lactoseIntolerance + "%";
+
+                // Show final prediction
+                let finalPrediction = document.createElement("h3");
+                finalPrediction.innerText = "Final Prediction: " + result["final_prediction"];
+                document.querySelector(".results-container").appendChild(finalPrediction);
+            } else {
+                document.querySelector(".results-content").innerHTML = "<p>No scan data available.</p>";
+            }
+        });
+
+        // Function to generate and download PDF
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(22);
+            doc.text("Scan Results - ALLERGEN", 10, 20);
+            doc.setFontSize(16);
+            doc.text("Allergy Profile", 10, 30);
+
+            let scanData = localStorage.getItem("scanResult");
+            let result = scanData ? JSON.parse(scanData) : null;
+
+            if (result) {
+                doc.setFontSize(14);
+                doc.text(`No Allergy: ${result["No Allergy"]}`, 10, 40);
+                doc.text(`Peanut Allergy: ${result["Peanut Allergy"]}`, 10, 50);
+                doc.text(`Lactose Intolerance: ${result["Lactose Intolerance"]}`, 10, 60);
+                doc.text(`Final Prediction: ${result["final_prediction"]}`, 10, 70);
+            } else {
+                doc.text("No scan data available.", 10, 40);
+            }
+
+            doc.save("scan_results.pdf");
+        }
+    </script>
+</body>
+</html>
